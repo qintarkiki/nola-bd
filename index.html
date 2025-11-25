@@ -51,31 +51,31 @@
 
     <div class="ar-container">
       <a-scene
-        mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;"
+        mindar-image="imageTargetSrc: ./assets/targets.mind; autoStart: true;"
         color-space="sRGB"
         renderer="colorManagement: true; antialias: true; alpha: true"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
       >
         <a-assets>
-          <img id="card" src="./card.png?v=3" />
-          <img id="balloon" src="./balloon.png?v=3" />
-          <img id="hat" src="./hat.png?v=3" />
-          <img id="hbd" src="./hbd.png?v=3" />
-          <img id="present1" src="./present-1.png?v=3" />
-          <img id="present2" src="./present-2.png?v=3" />
-          <img id="present3" src="./present-3.png?v=3" />
-          <img id="rainbow" src="./rainbow.png?v=3" />
-          <img id="star1" src="./star.png?v=3" />
-          <img id="star2" src="./star-2.png?v=3" />
+          <img id="card" src="./assets/card.png" />
+          <img id="balloon" src="./assets/balloon.png" />
+          <img id="hat" src="./assets/hat.png" />
+          <img id="hbd" src="./assets/hbd.png" />
+          <img id="present1" src="./assets/present-1.png" />
+          <img id="present2" src="./assets/present-2.png" />
+          <img id="present3" src="./assets/present-3.png" />
+          <img id="rainbow" src="./assets/rainbow.png" />
+          <img id="star1" src="./assets/star.png" />
+          <img id="star2" src="./assets/star-2.png" />
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- Everything is attached to the tracked card image -->
+        <!-- All AR content on the tracked card -->
         <a-entity mindar-image-target="targetIndex: 0">
 
-          <!-- MAIN CARD (upright, center) -->
+          <!-- MAIN CARD -->
           <a-plane
             src="#card"
             width="1.4"
@@ -85,7 +85,7 @@
             animation__bob="property: position; to: 0 0.05 0; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine"
           ></a-plane>
 
-          <!-- HAPPY BIRTHDAY (static, just slightly in front) -->
+          <!-- HAPPY BIRTHDAY (static) -->
           <a-image
             src="#hbd"
             width="1.7"
@@ -94,7 +94,7 @@
             rotation="0 0 0"
           ></a-image>
 
-          <!-- RAINBOW (behind card for depth) -->
+          <!-- RAINBOW (behind card) -->
           <a-image
             src="#rainbow"
             width="1.6"
@@ -103,7 +103,7 @@
             rotation="0 0 0"
           ></a-image>
 
-          <!-- PARTY HAT (small wiggle, in front) -->
+          <!-- HAT -->
           <a-image
             src="#hat"
             width="0.55"
@@ -114,7 +114,7 @@
             animation__rot="property: rotation; to: 0 0 10; dir: alternate; loop: true; dur: 1600; easing: easeInOutSine"
           ></a-image>
 
-          <!-- BALLOONS (left/right, gently floating) -->
+          <!-- BALLOONS -->
           <a-image
             src="#balloon"
             width="0.6"
@@ -133,7 +133,7 @@
             animation="property: position; to: 0.95 0.75 0.16; dir: alternate; loop: true; dur: 1500; easing: easeInOutSine"
           ></a-image>
 
-          <!-- PRESENTS (below, slight depth stagger) -->
+          <!-- PRESENTS -->
           <a-image
             src="#present1"
             width="0.5"
@@ -161,7 +161,7 @@
             animation="property: rotation; to: 0 8 0; dir: alternate; loop: true; dur: 1500; easing: easeInOutSine"
           ></a-image>
 
-          <!-- STARS (one behind, one in front) -->
+          <!-- STARS -->
           <a-image
             src="#star1"
             width="0.35"
