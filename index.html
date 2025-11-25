@@ -18,19 +18,16 @@
         overflow: hidden;
         background: #000;
       }
-
       .ar-container {
         position: fixed;
         inset: 0;
         width: 100vw;
         height: 100vh;
       }
-
       a-scene {
         width: 100%;
         height: 100%;
       }
-
       #debug {
         position: fixed;
         left: 8px;
@@ -58,58 +55,63 @@
         device-orientation-permission-ui="enabled: false"
       >
         <a-assets>
-          <img id="card" src="./assets/card.png" />
+          <!-- tracking image is card.png, but we DON'T render it -->
+          <img id="couple"  src="./assets/couple.png" />
           <img id="balloon" src="./assets/balloon.png" />
-          <img id="hat" src="./assets/hat.png" />
-          <img id="hbd" src="./assets/hbd.png" />
+          <img id="hat"     src="./assets/hat.png" />
+          <img id="hbd"     src="./assets/hbd.png" />
           <img id="present1" src="./assets/present-1.png" />
           <img id="present2" src="./assets/present-2.png" />
           <img id="present3" src="./assets/present-3.png" />
-          <img id="rainbow" src="./assets/rainbow.png" />
-          <img id="star1" src="./assets/star.png" />
-          <img id="star2" src="./assets/star-2.png" />
+          <img id="rainbow"  src="./assets/rainbow.png" />
+          <img id="star1"    src="./assets/star.png" />
+          <img id="star2"    src="./assets/star-2.png" />
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- All AR content on the tracked card -->
+        <!-- Everything appears when the printed picture (targets.mind) is found -->
         <a-entity mindar-image-target="targetIndex: 0">
 
-          <!-- MAIN CARD -->
+          <!-- COUPLE illustration: main pop-up, transparent PNG -->
           <a-plane
-            src="#card"
+            src="#couple"
             width="1.4"
             height="2.0"
             position="0 0 0"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
             animation__bob="property: position; to: 0 0.05 0; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine"
           ></a-plane>
 
-          <!-- HAPPY BIRTHDAY (static) -->
+          <!-- HAPPY BIRTHDAY (static, above) -->
           <a-image
             src="#hbd"
             width="1.7"
             height="0.6"
             position="0 1.0 0.08"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
           ></a-image>
 
-          <!-- RAINBOW (behind card) -->
+          <!-- RAINBOW (behind for depth) -->
           <a-image
             src="#rainbow"
             width="1.6"
             height="0.7"
             position="0 1.25 -0.12"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
           ></a-image>
 
-          <!-- HAT -->
+          <!-- HAT (small wiggle) -->
           <a-image
             src="#hat"
             width="0.55"
             height="0.55"
             position="0 0.45 0.06"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
             animation__pos="property: position; to: 0 0.55 0.08; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine"
             animation__rot="property: rotation; to: 0 0 10; dir: alternate; loop: true; dur: 1600; easing: easeInOutSine"
           ></a-image>
@@ -121,6 +123,7 @@
             height="0.9"
             position="-0.95 0.4 0.12"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
             animation="property: position; to: -0.95 0.8 0.16; dir: alternate; loop: true; dur: 1800; easing: easeInOutSine"
           ></a-image>
 
@@ -130,6 +133,7 @@
             height="0.9"
             position="0.95 0.35 0.12"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
             animation="property: position; to: 0.95 0.75 0.16; dir: alternate; loop: true; dur: 1500; easing: easeInOutSine"
           ></a-image>
 
@@ -140,6 +144,7 @@
             height="0.5"
             position="-0.7 -0.6 0.05"
             rotation="0 8 0"
+            material="transparent: true; alphaTest: 0.1"
             animation="property: rotation; to: 0 -8 0; dir: alternate; loop: true; dur: 1400; easing: easeInOutSine"
           ></a-image>
 
@@ -149,6 +154,7 @@
             height="0.5"
             position="0 -0.7 0.0"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
             animation="property: scale; to: 1.15 1.15 1; dir: alternate; loop: true; dur: 1300; easing: easeInOutSine"
           ></a-image>
 
@@ -158,6 +164,7 @@
             height="0.5"
             position="0.7 -0.6 -0.05"
             rotation="0 -8 0"
+            material="transparent: true; alphaTest: 0.1"
             animation="property: rotation; to: 0 8 0; dir: alternate; loop: true; dur: 1500; easing: easeInOutSine"
           ></a-image>
 
@@ -168,6 +175,7 @@
             height="0.35"
             position="-1.1 0.3 -0.18"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
             animation__pulse="property: scale; to: 1.6 1.6 1; dir: alternate; loop: true; dur: 800; easing: easeInOutSine"
             animation__spin="property: rotation; to: 0 0 360; loop: true; dur: 3500; easing: linear"
           ></a-image>
@@ -178,6 +186,7 @@
             height="0.35"
             position="1.1 0.4 0.18"
             rotation="0 0 0"
+            material="transparent: true; alphaTest: 0.1"
             animation__pulse="property: scale; to: 1.6 1.6 1; dir: alternate; loop: true; dur: 900; easing: easeInOutSine"
             animation__spin="property: rotation; to: 0 0 -360; loop: true; dur: 3200; easing: linear"
           ></a-image>
