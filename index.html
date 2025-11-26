@@ -71,6 +71,7 @@
   <body>
     <div id="debug">Loading camera…</div>
     <button id="photo-button">📸 Save photo</button>
+    <button id="music-button">🎵 Play music</button>
 
     <div class="ar-container">
       <a-scene
@@ -80,6 +81,10 @@
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
       >
+        <a-entity id="bgm-sound"
+            sound="src: #bgm; autoplay: false; loop: true; volume: 0.4">
+        </a-entity>
+
         <a-assets>
           <img id="couple"   src="./assets/couple.png" />
           <img id="balloon"  src="./assets/balloon.png" />
@@ -95,13 +100,15 @@
           <img id="sparkle"  src="./assets/sparkle.png" />
           <img id="doodle1"  src="./assets/doodle1.png" />
           <img id="doodle2"  src="./assets/doodle2.png" />
+          <audio id="bgm" src="./assets/music.mp4" preload="auto"></audio>
+
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
         <!-- All AR content -->
         <a-entity mindar-image-target="targetIndex: 0" id="ar-root">
-
+          
           <!-- COUPLE illustration -->
           <a-plane
             src="#couple"
@@ -249,6 +256,24 @@
       const target = document.getElementById('ar-root');
       const photoBtn = document.getElementById('photo-button');
 
+      const musicBtn = document.getElementById('music-button');
+      const bgmEntity = document.querySelector('#bgm-sound');
+      let musicOn = false;
+
+      musicBtn.addEventListener('click', () => {
+        if (!bgmEntity || !bgmEntity.components || !bgmEntity.components.sound) return;
+
+        if (!musicOn) {
+          bgmEntity.components.sound.playSound();
+          musicBtn.textContent = '🔇 Stop music';
+        } else {
+          bgmEntity.components.sound.stopSound();
+          musicBtn.textContent = '🎵 Play music';
+        }
+        musicOn = !musicOn;
+      });
+
+
       window.addEventListener('load', () => {
         debug.textContent = 'Point to the printed picture 🎯';
       });
@@ -308,6 +333,12 @@
         target.addEventListener('targetFound', () => {
           debug.textContent = 'Target FOUND 🎉';
           spawnConfetti();
+          if (!hasStartedOnce && bgmEntity && bgmEntity.components.sound) {
+            bgmEntity.components.sound.playSound();
+            musicBtn.textContent = '🔇 Stop music';
+            musicOn = true;
+            hasStartedOnce = true;
+          }
         });
         target.addEventListener('targetLost', () => {
           debug.textContent = 'Target lost – move closer 👀';
