@@ -65,6 +65,21 @@
       #photo-button:disabled {
         opacity: 0.6;
       }
+      #music-button {
+        position: fixed;
+        right: 10px;
+        bottom: 95px; /* a bit above the Save photo button */
+        z-index: 9999;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: none;
+        font-size: 14px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: rgba(255, 172, 143, 0.9);
+        color: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      }
+
     </style>
   </head>
 
@@ -334,10 +349,10 @@
           debug.textContent = 'Target FOUND 🎉';
           spawnConfetti();
           if (!hasStartedOnce && bgmEntity && bgmEntity.components.sound) {
-            bgmEntity.components.sound.playSound();
-            musicBtn.textContent = '🔇 Stop music';
-            musicOn = true;
-            hasStartedOnce = true;
+            const musicBtn = document.getElementById('music-button');
+            const bgmEntity = document.querySelector('#bgm-sound');
+            let musicOn = false;
+            let hasStartedOnce = false;
           }
         });
         target.addEventListener('targetLost', () => {
